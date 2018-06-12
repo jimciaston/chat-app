@@ -1,0 +1,66 @@
+
+.userName_page{
+    display:block;
+}
+.chat_page{
+    display:none;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1{
+    text-align:center;
+}
+#input_username{
+    width:60%;
+    height:50px;
+}
+
+
+.chat_wrapper{
+    display:flex;
+    border:1px solid black;
+    width:40%;
+    height: 500px;
+    margin:0 auto;
+}
+.chat_block{
+    margin-top:auto;
+    width:100%;
+}
+.chat_wrapper h5{
+    font-size:1rem;
+
+}
+.receive_{
+    float:left;
+    padding-left:2em;
+}
+.sent_{
+    float:right;
+    padding-right:2em;
+}
+.sendMsg_form{
+    margin:0 auto;
+}
+#sendMsg{
+    margin-top:10px;
+    width:40%;
+    height:20px;
+}
+#sendMsg{
+    width:45%;
+    height:40px;
+}
+.users_online{
+    position:absolute;
+}
+#blank_input{
+    display:none;
+}
+.input_error{
+    border:2px solid red;
+}
