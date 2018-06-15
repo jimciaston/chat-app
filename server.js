@@ -16,25 +16,33 @@ io.on('connection', (socket) => {
 
     socket.id = "anon";
 
-    socket.on('new user', function(data) {
-        socket.id = data.user;
-        //pushes users to array
-        if(usersOnline.indexOf(socket.id) === -1){
-            usersOnline.push(socket.id);
-            io.sockets.emit('count users', {current: usersOnline});
-            console.log('now ther are ' + usersOnline.length + ' online')
+    socket.on('new user', function(data,callback) {
+        //if user name is taken
+        if(usersOnline.indexOf(data) != -1 || data == ''){
+            callback(false);
         }else{
-            console.log('please pick another name')
+            //if username is not taken
+            callback(true);
+            socket.id = data;
+            //pushes data(username) to data
+            usersOnline.push(socket.id);
+            //sends back to client usersOnline array
+            io.sockets.emit('new user', {usersOnline: usersOnline, user: socket.id});
+            console.log(usersOnline.length)
         }
-        //emits new event, keep track of current users online
-
-
     });
     socket.on('disconnect', () => {
         usersOnline.splice(usersOnline.indexOf(socket.id), 1);
         //emits count users, sets current user
-        io.sockets.emit('count users', {current: usersOnline});
+        io.sockets.emit('new user', {usersOnline: usersOnline, user: socket.id});
+        console.log(usersOnline.length)
 
+    });
+
+
+    socket.on('send msg' , function(data){
+        io.sockets.emit('send msg', {msg: data, user: socket.id});
+        console.log(data)
     })
 
 });
@@ -42,5 +50,4 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
     console.log('server is running master')
 });
-
-// TODO: update clientside when user disocnnects
+// TODO: Log socket.id to data;

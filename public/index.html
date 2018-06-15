@@ -3,42 +3,36 @@
     <head>
         <meta charset = "utf-8" />
         <title>Chat Site</title>
-        <link rel = "stylesheet" href = "./css/style.css"
+        <link type = "text/css"  rel = "stylesheet" href = "./css/style.css"
     </head>
     <body>
         <div class = "userName_page">
-
             <h1>Please Enter Your Desired Username</h1>
-            <h2 id = "blank_input">Please Enter A UserName *</h2>
-            <form>
+            <h2 id = "error_input"></h2>
+            <form id = "username_form">
                 <input id = "input_username" type = "text" />
-                <input type = "submit" />
+                <input id = "submit_username" type = "submit" />
             </form>
         </div>
 
         <div class = "chat_page">
             <div class = "users_online">
                 <span id = "counter"></span>
-                <h5>Greg</h5>
-                <h5>Greg</h5>
             </div>
-
-            <div class = "chat_wrapper">
-                <div class = "chat_block">
-                    <div class = "receive_">
-                        <p>Hey BIlly</p>
-                    </div>
-                    <div class = "sent_">
-                        <p>Whats up George</p>
+                <div class = "chat_wrapper">
+                    <div class = "chat_block">
+                        <div class = "receive_">
+                            <p>Hey Billy</p>
+                        </div>
+                        <div class = "sent_">
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-            <form id = "sendMsg_form">
-                <input id = "sendMsg" type = "text" />
-                <button id = "sendMsg">Send Message</button>
-            </form>
+                    <input id = "sendMsg" type = "text" />
+                    <button id = "send_btn">Send Message</button>
 
-        </div>
+            </div>
 
         <script src="/socket.io/socket.io.js"></script>
         <script src = "./js/client.js"></script>
