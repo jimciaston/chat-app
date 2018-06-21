@@ -9,10 +9,13 @@ const port = process.env.PORT || 3001;
 let app = express();
 let server = http.createServer(app);
 var io = socketIO(server);
-
+var user;
 app.use(express.static(publicPath));
 let usersOnline = []; //keeps track of current users online
+
 io.on('connection', (socket) => {
+let user = socket.id;
+socket.emit('user', user);
 
     socket.id = "anon";
 
@@ -41,8 +44,8 @@ io.on('connection', (socket) => {
 
 
     socket.on('send msg' , function(data){
+
         io.sockets.emit('send msg', {msg: data, user: socket.id});
-        console.log(data)
     })
 
 });
