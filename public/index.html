@@ -5,40 +5,58 @@
         <title>Chat Site</title>
         <link type = "text/css"  rel = "stylesheet" href = "./css/style.css" />
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
     </head>
     <body>
         <div class = "userName_page">
+
+
+
+
+
+
             <h1>Please Enter Your Desired Username</h1>
             <h2 id = "error_input"></h2>
-            <form id = "username_form">
-                <input id = "input_username" type = "text" />
-                <input id = "submit_username" type = "submit" value = "Join the Chat"/>
-            </form>
+
+                <input id = "input_username" type = "text"  />
+                <div class="button-effect">
+                    <a class="effect effect-3" title="Join the Party">Join Chat</a>
+                </div>
+
         </div>
 
         <div class = "chat_page">
             <div class = "users_online">
                 <span id = "counter"></span>
+                <ul id = 'users_list'>
+                </ul>
+
             </div>
                 <div class = "chat_wrapper">
                     <div class = "chat_block">
                         <div class = "welcome_box">
                             <h1 id = "welcome_header">Welcome Jimmy to Chat</h1>
                         </div>
+                        <h4 id = "isTyping"></h4>
                         <div class = "receive_">
-                            <span>Jim : </span>
+
                         </div>
                         <div class = "sent_">
 
                         </div>
                     </div>
                 </div>
-                    <input id = "sendMsg" type = "text" />
-                    <button id = "send_btn">Send Message</button>
+                <div class = "msg_container">
+                    <input id = "sendMsg" type = "text" onkeydown="search(this)" />
+                    <button id = "send_btn"><i class="fas fa-arrow-up"></i></button>
+                </div>
+
 
             </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="https://use.fontawesome.com/c270b3bf59.js"></script>
         <script src = "./js/client.js"></script>
     </body>
 </html>

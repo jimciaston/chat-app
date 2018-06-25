@@ -14,11 +14,10 @@ body{
     width:100%;
     font-family: 'Noto Serif', serif;
     font-size:1rem;
-    animation: colorchange 40s infinite; /* Chrome and Safari */
+    animation: colorchange 50s infinite; /* Chrome and Safari */
 }
 .userName_page h1{
     letter-spacing: 7px;
-    
 }
     @keyframes colorchange
     {
@@ -35,7 +34,8 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction:column;
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    background:url('http://hdwpro.com/wp-content/uploads/2016/09/Simple-White.jpg');
+    background-size:cover;
     height:100vh;
 }
 
@@ -44,13 +44,18 @@ body{
 }
 
 #input_username{
+    border:none;
+    border-bottom:2px solid black;
     width:350px;
     height:50px;
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    background-color:transparent;
     outline:none;
-    border:none;
     text-align: center;
-
+}
+#input_username[type=text]{
+    font-size:3rem;
+    color:white;
+    font-family: 'Noto Serif', serif;
 }
 #submit_username{
     width:40%;
@@ -61,8 +66,9 @@ body{
 
 
 .chat_wrapper{
-    border:1px solid black;
-    width:600px;
+    border:2px solid #495aff;
+    width:60%;
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
     height: 500px;
     margin-top:1em;
 }
@@ -81,6 +87,7 @@ body{
 .receive_{
     margin-top:auto;
     overflow:overlay;
+    border: 1px solid black;
 }
 .receive_ p{
     display:flex;
@@ -88,22 +95,36 @@ body{
     padding:0;
     margin:0;
     height: 65px;
+    transition: all 1s linear;
+}
+.er{
+    font-size:1rem;
+    font-weight:700;
+}
+.msg_container{
+    width:100%;
+    text-align: center;
 }
 
-.sendMsg_form{
-    margin:0 auto;
-}
 #sendMsg{
     margin-top:10px;
     width:40%;
     height:20px;
 }
 #sendMsg{
-    width:45%;
+    width:35%;
     height:40px;
+    padding:0;
+}
+#send_btn{
+    width:50px;
+    height:40px;
+    color:purple;
 }
 .users_online{
-
+    position:absolute;
+    align-self: flex-start;
+    padding-left: 4em;
 }
 #blank_input{
     display:none;
@@ -112,14 +133,20 @@ body{
     border:2px solid red;
 }
 #submit_username{
-    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    background-color:transparent;
     margin-top:4em;
-    border:none;
+    border:2px solid black;
     outline:none;
     font-family: 'Noto Serif', serif;
     font-size:1rem;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
+    font-size:1rem;
     text-transform: uppercase;
+    transition:500ms ease-in;
+    cursor:pointer;
+}
+#submit_username:hover{
+    background-image: linear-gradient(to top, #b3ffab 0%, #12fff7 100%);
 }
 
 .act{
@@ -155,4 +182,55 @@ body{
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+
+
+.effect {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+  padding: 20px 50px;
+  width: 150px;
+  overflow: hidden;
+  background-color:#b0b0ce;
+  margin-top:4em;
+  border:2px solid #8c8ca4;
+  letter-spacing: 5px;
+  box-shadow:2px 2px 2px #b7b7d2;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+/* effect-3 styles */
+.effect.effect-3 {
+  transition: all 300ms linear 0s;
+}
+.effect.effect-3:before {
+  content: "";
+  color:green;
+  font-family: FontAwesome;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 30px;
+  transition: all 200ms linear 0s;
+}
+.effect.effect-3:hover {
+  text-indent: -9999px;
+  padding: 20px 50px;
+}
+.effect.effect-3:hover:before {
+  top: 0;
+  text-indent: 0;
 }

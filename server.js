@@ -9,13 +9,13 @@ const port = process.env.PORT || 3001;
 let app = express();
 let server = http.createServer(app);
 var io = socketIO(server);
-var user;
+let username;
 app.use(express.static(publicPath));
 let usersOnline = []; //keeps track of current users online
 
 io.on('connection', (socket) => {
 let user = socket.id;
-socket.emit('user', user);
+
 
     socket.id = "anon";
 
@@ -27,17 +27,19 @@ socket.emit('user', user);
             //if username is not taken
             callback(true);
             socket.id = data;
+            username = data;
             //pushes data(username) to data
             usersOnline.push(socket.id);
             //sends back to client usersOnline array
-            io.sockets.emit('new user', {usersOnline: usersOnline, user: socket.id});
+            io.emit('USERS_CONNECTED', {usersOnline: usersOnline, user: socket.id});
             console.log(usersOnline.length)
+            console.log(usersOnline + ' are online')
         }
     });
     socket.on('disconnect', () => {
         usersOnline.splice(usersOnline.indexOf(socket.id), 1);
         //emits count users, sets current user
-        io.sockets.emit('new user', {usersOnline: usersOnline, user: socket.id});
+        io.emit('USERS_CONNECTED', {usersOnline: usersOnline, user: socket.id});
         console.log(usersOnline.length)
 
     });
@@ -48,9 +50,10 @@ socket.emit('user', user);
         io.sockets.emit('send msg', {msg: data, user: socket.id});
     })
 
+
+
 });
 
 server.listen(port, () => {
     console.log('server is running master')
 });
-// TODO: Log socket.id to data;

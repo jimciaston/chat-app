@@ -7,7 +7,7 @@ let chat_page = document.querySelector(".chat_page");
 let chatWrapper = document.querySelector(".chat_wrapper")
 let counter = document.getElementById("counter");
 let users = document.querySelector(".users_online")
-
+let join_btn = document.querySelector(".button-effect")
 let msg_input = document.querySelector("#sendMsg");
 let btn_send = document.querySelector("#send_btn");
 let onlineUsers = [];
@@ -15,12 +15,13 @@ let sent_ = document.querySelector(".sent_");
 let receive_ = document.querySelector(".receive_");
 let newUser_text = document.querySelector(".welcome_box")
 let user;
-
+let isTyping = document.querySelector('#isTyping')
 let welcome_header = document.querySelector("#welcome_header");
 
+let users_online_container = document.querySelector(".users_online");
 
 
-form.addEventListener("submit", function(e){
+join_btn.addEventListener("click", function(e){
     e.preventDefault();
     user = input.value;
     //sets user name to input.value
@@ -34,58 +35,115 @@ form.addEventListener("submit", function(e){
             if(input.value == ''){
                 input.classList.add("input_error");
                 let error_msg = document.getElementById('error_input');
-                error_msg.innerHTML = 'Please Type a UserName'
-                error_msg.style.display = "block"
+                error_msg.innerHTML = '*Invalid, Please Type a Username'
+                error_msg.style.display = "block";
+                input.style.border = "2px solid #d9534f";
+
             }else{
                 input.classList.add("input_error");
                 let error_msg = document.getElementById('error_input');
                 error_msg.style.display = "block";
+                error_msg.style.border = "2px solid	#d9534f"
                 error_msg.innerHTML = "Woops, sorry but that user name is already taken, please try again";
             }
 
         }
     });
-    socket.on('new user' , function (data){
-        counter.innerHTML = (data.usersOnline.length + " Users are online");
-        let user = data.user;
+
+    //sets up new user
+
+    socket.on('USERS_CONNECTED' , function (data){
+
+
+        //counts online users currently
+        counter.innerHTML = (data.usersOnline.length + " Online");
+        let arr = data.usersOnline;
+        for(let i = 0; i < arr.length; i++){
+
+                let fish = document.querySelector('#users_list');
+                let h = document.createElement('li');
+                fish.innerHTML = arr;
+
+        }
+
     });
 
+
 });
+
 //msg send
+
 btn_send.addEventListener('click', function(){
     socket.emit('send msg', msg_input.value);
 
 });
-
+//checks if enter is pressed, if so emits message to chat
+function search(ele) {
+    if(event.key === 'Enter') {
+        socket.emit('send msg', msg_input.value);
+    }
+}
+//send message events
 
 socket.on('send msg', function(data){
     if(data.user == user){
-
+        //sender logic
             msg_input.value = '';
             let p = document.createElement('p');
             receive_.append(p);
-            p.innerHTML = data.msg;
+            p.innerHTML = "<span class = 'er'>" + 'You' + "</span>" + ": " + data.msg;
             p.style.textAlign = 'right';
-            p.style.backgroundColor = "red";
+            p.style.backgroundColor = "#5cb85c";
             p.style.justifyContent = "flex-end";
             p.style.paddingRight = "2em";
         }
         else{
+            //receiver logic
             msg_input.value = '';
             let p = document.createElement('p');
             receive_.append(p);
-            p.innerHTML = data.msg;
+            p.innerHTML = "<span class = 'er'>" + data.user + "</span>" + ": " + data.msg;
             p.style.textAlign = 'left';
-            p.style.backgroundColor = "blue";
+            p.style.backgroundColor = "#5bc0de";
             p.style.paddingLeft = "2em";
         };
+
         //makes sure scroll stays at bottom
         receive_.scrollTop = receive_.scrollHeight;
-
     });
 function addAnimation(){
     newUser_text.classList.add("act");
 }
+
+$( document ).ready(function(){
+    let header = document.querySelector(".feedback");
+
+    var timeout;
+
+    function timeoutFunction() {
+        typing = false;
+        socket.emit("typing", false);
+    }
+
+    $('#sendMsg').keyup(function() {
+        typing = true;
+        socket.emit('typing', 'typing...');
+        clearTimeout(timeout);
+        timeout = setTimeout(timeoutFunction, 5000);
+    });
+
+    socket.on('typing', function(data) {
+        if (data) {
+            $('#isTyping').html(data);
+            $('#isTyping').classList.add('act')
+        } else {
+            $('#isTyping').html("");
+        }
+    });
+
+})
+
+
 
 
 
