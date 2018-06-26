@@ -34,7 +34,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction:column;
-    background:url('http://hdwpro.com/wp-content/uploads/2016/09/Simple-White.jpg');
+    background:url('http://www.solidbackgrounds.com/images/2880x1800/2880x1800-deep-sky-blue-solid-color-background.jpg');
     background-size:cover;
     height:100vh;
 }
@@ -66,9 +66,10 @@ body{
 
 
 .chat_wrapper{
-    border:2px solid #495aff;
-    width:60%;
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    border:2px solid #f0f8ff;
+    box-shadow:2px 3px 3px #f0f8ff;
+    width:50%;
+    background-color:#fff8e7;
     height: 500px;
     margin-top:1em;
 }
@@ -87,7 +88,6 @@ body{
 .receive_{
     margin-top:auto;
     overflow:overlay;
-    border: 1px solid black;
 }
 .receive_ p{
     display:flex;

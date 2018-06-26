@@ -51,18 +51,21 @@ join_btn.addEventListener("click", function(e){
     });
 
     //sets up new user
-
+let ul = document.querySelector('#users_list');
     socket.on('USERS_CONNECTED' , function (data){
 
 
         //counts online users currently
         counter.innerHTML = (data.usersOnline.length + " Online");
         let arr = data.usersOnline;
+        let ul = document.querySelector('#users_list');
         for(let i = 0; i < arr.length; i++){
 
-                let fish = document.querySelector('#users_list');
+
                 let h = document.createElement('li');
-                fish.innerHTML = arr;
+                 h.setAttribute('id','user-' + data.user);
+                    h.innerHTML = arr;
+
 
         }
 
@@ -70,6 +73,15 @@ join_btn.addEventListener("click", function(e){
 
 
 });
+socket.on('USERS_dis', function(data){
+    counter.innerHTML = (data.usersOnline.length + " Users Online");
+
+
+            var user = document.getElementById('user-' + data.user);
+            user.parentNode.removeChild(user);
+
+})
+
 
 //msg send
 
@@ -115,36 +127,40 @@ function addAnimation(){
     newUser_text.classList.add("act");
 }
 
-$( document ).ready(function(){
-    let header = document.querySelector(".feedback");
 
-    var timeout;
 
-    function timeoutFunction() {
-        typing = false;
-        socket.emit("typing", false);
+
+
+
+
+socket.on('firstLogin', function(data){
+    let ul = document.querySelector('#users_list');
+ul.innerHTML = '';
+for(let i = 0; i < data.length; i++){
+    addUserToList(ul, data[i]);
+}
+
+});
+
+socket.on('addConnectedUser', function(data) {
+                let ul = document.querySelector('#users_list');
+				addUserToList(ul, data);
+	});
+
+
+function addUserToList(ul, userName) {
+
+        let li = document.createElement('li');
+          li.appendChild(document.createTextNode(userName));
+           li.setAttribute('id','user-' + userName);
+            ul.appendChild(li);
+
     }
+    socket.on('logout', function(data) {
 
-    $('#sendMsg').keyup(function() {
-        typing = true;
-        socket.emit('typing', 'typing...');
-        clearTimeout(timeout);
-        timeout = setTimeout(timeoutFunction, 5000);
-    });
-
-    socket.on('typing', function(data) {
-        if (data) {
-            $('#isTyping').html(data);
-            $('#isTyping').classList.add('act')
-        } else {
-            $('#isTyping').html("");
-        }
-    });
-
-})
-
-
-
+			var user = document.getElementById('user-' + data);
+			user.parentNode.removeChild(user);
+	});
 
 
 
