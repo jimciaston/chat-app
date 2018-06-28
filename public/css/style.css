@@ -12,32 +12,111 @@ body{
     flex-direction: column;
     height:100vh;
     width:100%;
-    font-family: 'Noto Serif', serif;
     font-size:1rem;
     animation: colorchange 50s infinite; /* Chrome and Safari */
 }
+.userName_page i{
+    font-size:2.8rem;
+    padding-left:.5em;
+    color:#7662f1;
+}
 .userName_page h1{
+    color:#0084a1;
+    letter-spacing: 3px;
+    font-size:2.1rem;
+    font-family: 'Ubuntu', sans-serif;
+}
+.userName_page p{
+    color:#0084a1;
+    letter-spacing:4px;
+    padding-bottom:5em;
+    font-family: 'Encode Sans Condensed', sans-serif;
+}
+.userName_page h2{
     letter-spacing: 7px;
+
+    font-family: 'Noto Serif', serif;
 }
     @keyframes colorchange
     {
-      0%   {background: #eef1f5;}
-      25%  {background: #6f86d6;}
-      50%  {background: #ebc0fd ;}
-      75%  {background: #f09819;}
+      0%   {background: #ebc0fd;}
+      25%  {background:	#00c7a4 ;}
+      50%  {background: #6f86d6;}
+      75%  {background: #b792dd;}
       100% {background: #8ddad5;}
     }
+    .effect {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight:700;
+      text-align: center;
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+      color: black;
+      text-transform: capitalize;
+      padding: 20px 50px;
+      width: 100px;
+      overflow: hidden;
+      background-color:transparent;
+      margin-top:4em;
+      border:2px solid #607878;;
+      letter-spacing: 5px;
+      box-shadow:2px 2px 2px #b7b7d2;
+      font-size:1.4rem;
+      cursor:pointer;
+    }
 
+    /* effect-3 styles */
+    .effect.effect-3 {
+      transition: all 300ms linear 0s;
+    }
+    .effect.effect-3:before {
+      content: "";
+      color:#7662f1;
+      font-family: FontAwesome;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 100%;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 30px;
+      transition: all 200ms linear 0s;
+    }
+    .effect.effect-3:hover {
+      text-indent: -9999px;
+      padding: 20px 50px;
+    }
+    .effect.effect-3:hover:before {
+      top: 0;
+      text-indent: 0;
+    }
 
 .chat_page{
     display:none;
     justify-content: center;
     align-items: center;
     flex-direction:column;
-    background:url('http://www.solidbackgrounds.com/images/2880x1800/2880x1800-deep-sky-blue-solid-color-background.jpg');
+    background-color:	#ffffff;
     background-size:cover;
     height:100vh;
 }
+.chat_header h1{
+    color:#0084a1;
+    letter-spacing: 3px;
+    font-size:2.1rem;
+    font-family: 'Ubuntu', sans-serif;
+}
+.chat_header i{
+    font-size:2.8rem;
+    padding-left:.5em;
+    color:#7662f1;
+}
+
 
 #username_form{
     text-align: center;
@@ -45,7 +124,7 @@ body{
 
 #input_username{
     border:none;
-    border-bottom:2px solid black;
+    border-bottom:4px solid black;
     width:350px;
     height:50px;
     background-color:transparent;
@@ -54,6 +133,7 @@ body{
 }
 #input_username[type=text]{
     font-size:3rem;
+    letter-spacing:10px;
     color:white;
     font-family: 'Noto Serif', serif;
 }
@@ -70,7 +150,7 @@ body{
     box-shadow:2px 3px 3px #f0f8ff;
     width:50%;
     background-color:#fff8e7;
-    height: 500px;
+    height: 400px;
     margin-top:1em;
 }
 .chat_block{
@@ -83,19 +163,33 @@ body{
 }
 .chat_wrapper h5{
     font-size:1rem;
-
+    font-family: 'Encode Sans Condensed', sans-serif;
 }
 .receive_{
     margin-top:auto;
     overflow:overlay;
+    animation: hi;
+}
+@keyframes hi {
+    0%{
+
+        opacity:0;
+    }100%{
+
+        opacity:1;
+    }
 }
 .receive_ p{
-    display:flex;
+    font-size:1rem;
+    font-weight:300;
     align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+
     padding:0;
     margin:0;
-    height: 65px;
     transition: all 1s linear;
+    margin-bottom:10px;
+    clear:both;
 }
 .er{
     font-size:1rem;
@@ -104,9 +198,11 @@ body{
 .msg_container{
     width:100%;
     text-align: center;
+    padding-bottom:3em;
 }
 
 #sendMsg{
+    outline:none;
     margin-top:10px;
     width:40%;
     height:20px;
@@ -119,13 +215,30 @@ body{
 #send_btn{
     width:50px;
     height:40px;
-    color:purple;
+    color:#7662f1;
+}
+#counter{
+    max-width:65%;
+    letter-spacing:4px;
+    color:#e1695b;
+    line-height: 35px;
+    font-family: 'Encode Sans Condensed', sans-serif;
 }
 .users_online{
     position:absolute;
     align-self: flex-start;
-    padding-left: 4em;
+    padding-left: 2em;
+    margin-top: -10em;
 }
+.users_online li{
+    list-style:none;
+    font-size:2rem;
+    color:#0084a1;
+    font-family: 'Shadows Into Light', cursive;
+    letter-spacing: 7px;
+    padding: 10px 0px;
+}
+
 #blank_input{
     display:none;
 }
@@ -154,6 +267,9 @@ body{
 }
 .welcome_box{
     display:flex;
+    width:50%;
+    position:absolute;
+
     font-size:14px;
     justify-content: center;
     align-items: center;
@@ -183,54 +299,14 @@ body{
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
-
-
-
-.effect {
-  text-align: center;
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  color: black;
-  text-transform: capitalize;
-  padding: 20px 50px;
-  width: 150px;
-  overflow: hidden;
-  background-color:#b0b0ce;
-  margin-top:4em;
-  border:2px solid #8c8ca4;
-  letter-spacing: 5px;
-  box-shadow:2px 2px 2px #b7b7d2;
-  font-size:1rem;
-  cursor:pointer;
+.user_msg_box{
+    font-size:1rem;
+    font-weight:700;
+    padding-right:1em;
 }
-
-/* effect-3 styles */
-.effect.effect-3 {
-  transition: all 300ms linear 0s;
-}
-.effect.effect-3:before {
-  content: "";
-  color:green;
-  font-family: FontAwesome;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 100%;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  font-size: 30px;
-  transition: all 200ms linear 0s;
-}
-.effect.effect-3:hover {
-  text-indent: -9999px;
-  padding: 20px 50px;
-}
-.effect.effect-3:hover:before {
-  top: 0;
-  text-indent: 0;
+#error_msg{
+    letter-spacing: 1px;
+    color:#0084a1;
+    font-size:1rem;
+    font-family: 'Encode Sans Condensed', sans-serif;
 }

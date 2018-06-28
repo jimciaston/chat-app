@@ -5,41 +5,45 @@
         <title>Chat Site</title>
         <link type = "text/css"  rel = "stylesheet" href = "./css/style.css" />
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,500,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 
     </head>
     <body>
         <div class = "userName_page">
-
-
-
-
-
-
-            <h1>Please Enter Your Desired Username</h1>
+            <h1>Just Chat<i class="far fa-comment"></i></h1><p>
+                A Simple, Real-Time Messaging Application
+            </p>
+            <h2>Please Enter Your Desired Username</h2>
             <h2 id = "error_input"></h2>
 
                 <input id = "input_username" type = "text"  />
                 <div class="button-effect">
-                    <a class="effect effect-3" title="Join the Party">Join Chat</a>
+                    <a class="effect effect-3" title="Join the Party">Join</a>
                 </div>
 
         </div>
 
         <div class = "chat_page">
+                <div class = "chat_header">
+                    <h1>Just Chat<i class="far fa-comment"></i></h1>
+                </div>
             <div class = "users_online">
-                <span id = "counter"></span>
+                <h2 id = "counter"></h2>
                 <ul id = 'users_list'>
                 </ul>
 
             </div>
                 <div class = "chat_wrapper">
+
                     <div class = "chat_block">
+
                         <div class = "welcome_box">
-                            <h1 id = "welcome_header">Welcome Jimmy to Chat</h1>
+                            <h1 id = "welcome_header"></h1>
                         </div>
-                        <h4 id = "isTyping"></h4>
-                        <div class = "receive_">
+                        <div class = "receive_ ">
 
                         </div>
                         <div class = "sent_">
@@ -48,6 +52,7 @@
                     </div>
                 </div>
                 <div class = "msg_container">
+                    <h2 id = "error_msg"></h2>
                     <input id = "sendMsg" type = "text" onkeydown="search(this)" />
                     <button id = "send_btn"><i class="fas fa-arrow-up"></i></button>
                 </div>
